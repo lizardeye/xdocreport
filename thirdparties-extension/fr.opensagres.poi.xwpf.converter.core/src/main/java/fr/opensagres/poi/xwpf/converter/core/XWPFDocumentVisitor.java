@@ -1113,7 +1113,11 @@ public abstract class XWPFDocumentVisitor<T, O extends Options, E extends IXWPFM
 
     private int getCellIndex( int cellIndex, XWPFTableCell cell )
     {
-        BigInteger gridSpan = stylesDocument.getTableCellGridSpan( cell.getCTTc().getTcPr() );
+        /**
+         * cell index should not be incremented by span
+         * span is a logical value, index is a physical value
+         */
+        /*BigInteger gridSpan = stylesDocument.getTableCellGridSpan( cell.getCTTc().getTcPr() );
         if ( gridSpan != null )
         {
             cellIndex = cellIndex + gridSpan.intValue();
@@ -1121,7 +1125,8 @@ public abstract class XWPFDocumentVisitor<T, O extends Options, E extends IXWPFM
         else
         {
             cellIndex++;
-        }
+        }*/
+        cellIndex++;
         return cellIndex;
     }
 
